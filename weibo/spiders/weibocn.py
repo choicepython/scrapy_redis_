@@ -7,9 +7,12 @@ class WeiboSpider(Spider):
     name = 'weibocn'
     
     allowed_domains = ['m.weibo.cn']
-    
+    # https://m.weibo.cn/api/container/getIndex?uid=3217179555&type=uid&value=3217179555&containerid=1005053217179555
+    # sinaweibo://userinfo?uid=3217179555&uid=3217179555&type=uid&value=3217179555&luicode=10000011&lfid=1076037385738879&v_p=42
     user_url = 'https://m.weibo.cn/api/container/getIndex?uid={uid}&type=uid&value={uid}&containerid=100505{uid}'
-    
+    # https://m.weibo.cn/api/container/getIndex?containerid=231051_-_followers_-_2423325250&page=1
+    # https://m.weibo.cn/api/container/getIndex?containerid=231051_-_followers_-_1001030103&page=1
+
     follow_url = 'https://m.weibo.cn/api/container/getIndex?containerid=231051_-_followers_-_{uid}&page={page}'
     
     fan_url = 'https://m.weibo.cn/api/container/getIndex?containerid=231051_-_fans_-_{uid}&page={page}'
@@ -110,7 +113,8 @@ class WeiboSpider(Spider):
             yield Request(self.fan_url.format(uid=uid, page=page),
                           callback=self.parse_fans, meta={'page': page, 'uid': uid})
     
-    def parse_weibos(self, response):
+    def \
+            parse_weibos(self, response):
         """
         解析微博列表
         :param response: Response对象
